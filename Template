@@ -1,0 +1,45 @@
+Option Explicit
+
+Sub first_Example()
+Dim i As Integer
+Dim count As Integer
+
+Cells.Select
+Selection.ClearContents
+
+With Selection.Interior
+.Pattern = xlNone
+.TintAndShade = 0
+.PatternTintAndShade = 0
+End With
+
+Range("A1").Select
+
+count = InputBox("Enter number of iterations = ", "Iterations")
+
+For i = 1 To count
+    Sheets("Sheet1").Select
+    Range("A" & i).Select
+    ActiveCell.FormulaR1C1 = i
+    Range("A" & i).Select
+    If Sheets("Sheet1").Range("A" & i).Value Mod 2 <> 0 Then
+        With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 65535
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+        End With
+    ElseIf Sheets("Sheet1").Range("A" & i).Value Mod 2 = 0 Then
+        With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 5287936
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+        End With
+    End If
+Next
+End Sub
+
+
